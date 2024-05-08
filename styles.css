@@ -1,0 +1,100 @@
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: center;
+}
+
+li {
+    list-style: none;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 90%;
+    gap: 30px;
+}
+
+.top > div {
+    border: 1px solid #000;
+}
+
+#dropBox {
+    width: 700px;
+    height: 500px;
+}
+
+#itemBox {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+#itemBox li {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+/*.frozen {*/
+/*  border: 2px solid red;*/
+/*  pointer-events: none !important;*/
+/*}*/
+.addBtn {
+    display: none;
+}
+
+#popup {
+    position: absolute;
+    border-radius: 10px;
+    background: #222222;
+    opacity: 85%;
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    color: #FFF;
+}
+
+.bot {
+    margin: 0 auto;
+    max-width: 90%;
+}
+
+.boxSize {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.boxSize li {
+    padding: 20px 10px;
+    background: #555555;
+    color: #FFFFFF;
+}
+
+.boxInner {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.boxInner img {
+    width: 100px;
+    height: 100px;
+}
+
+@media (min-width: 800px) {
+    .top {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    #itemBox ul{
+        display: flex;
+        flex-direction: row;
+    }
+}
