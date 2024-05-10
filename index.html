@@ -40,20 +40,6 @@
         </ul>
     </div>
     <button class="addBtn">Check</button>
-    <!--    <div id="popup" style="display:none">-->
-    <!--        дивчик-->
-    <!--    </div>-->
-</div>
-<div class="bot">
-
-
-<!--    <div>-->
-<!--        Выбор наполнителя-->
-<!--        <ul class="boxInner">-->
-<!--            <li data-name="kraft-bej"><img src="img/kraft-bej.jpg"></li>-->
-<!--            <li data-name="kraft-gold"><img src="img/kraft-gold.jpg"></li>-->
-<!--        </ul>-->
-<!--    </div>-->
 </div>
 </body>
 <script type="application/javascript">
@@ -62,17 +48,14 @@
     const itemBox = document.querySelector('#itemBox');
     let addBtn = document.querySelector('.addBtn');
     const choiceBoxSize = document.querySelector('.choiceBoxSize');
-    const changeBoxSizeBtn = document.querySelector('.changeBoxSizeBtn');
     const boxSize = document.querySelector('.boxSize');
-    const boxInner = document.querySelector('.boxInner');
 
     const changeBoxSize = () => {
         choiceBoxSize.style.display = 'block';
         document.querySelector('.changeBoxSizeBtn').style.display = 'none';
     }
     const choiceCandies = () => {
-        document.querySelector('.bot').style.display = 'block';
-        // document.querySelector('.choice').style.display = 'none';
+        // document.querySelector('.bot').style.display = 'block';
     }
     const choiceChoc = () => {
         document.querySelector('.bot').style.display = 'block';
@@ -93,8 +76,6 @@
         });
     });
 
-
-
     itemBox.addEventListener('click', (event) => {
         let parent = event.target.parentNode;
         let img = parent.querySelector('img');
@@ -103,23 +84,7 @@
         dropBox.append(clone)
         addBtn.click();
     });
-    // console.log(packing)
 
-    // dropBox.addEventListener('contextmenu', (event) => {
-    //     event.preventDefault();
-    //     let e = event.target;
-    //     if (e != dropBox) {
-    //
-    //         const btnDelete = '<button onClick="e.remove()">Удалить изображение</button>';
-    //         // e.remove();
-    //         popup.style.display = 'block';
-    //         popup.style.left = event.pageX - popup.offsetWidth + 'px';
-    //         popup.style.top = event.pageY + 'px';
-    //         popup.insertAdjacentHTML('beforeEnd', btnDelete);
-    //         //зачищать html
-    //         //закрывать модалку на клике вне его
-    //     }
-    // });
     boxSize.addEventListener('click', (event) => {
         let li = event.target;
         let width = li.dataset.width;
@@ -131,11 +96,11 @@
         workPlace.style.display = 'flex';
     });
 
-    boxInner.addEventListener('click', (event) => {
-        let img = event.target;
-        dropBox.style.backgroundImage = 'url("' + img.src + '")';
-        console.log(img.src)
-    });
+    // boxInner.addEventListener('click', (event) => {
+    //     let img = event.target;
+    //     dropBox.style.backgroundImage = 'url("' + img.src + '")';
+    //     console.log(img.src)
+    // });
 
 
 </script>
