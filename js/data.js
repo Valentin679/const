@@ -78,3 +78,49 @@ const packing = {
         },
     }
 }
+const forms = {
+    mens_set: {
+        briefcase: {
+            width: 197,
+            height: 152,
+            weight: 20,
+            src: "mens_set/briefcase-179x152x20g.png"
+        },
+        clock: {
+            width: 105,
+            height: 179,
+            weight: 10,
+            src: "mens_set/clock-105x179-10g.png"
+        },
+        glasses: {
+            width: 170,
+            height: 67,
+            weight: 10,
+            src: "mens_set/glasses-170x67-10g.png"
+        },
+        holiday: {
+            width: 318,
+            height: 87,
+            weight: 17,
+            src: "mens_set/happy-holiday-318x87-17g.png"
+        },
+        mustache: {
+            width: 182,
+            height: 66,
+            weight: 8,
+            src: "mens_set/mustache-182x66-8g.png"
+        },
+        tie: {
+            width: 69,
+            height: 182,
+            weight: 8,
+            src: "mens_set/tie-69x182-8g.png"
+        },
+        wallet: {
+            width: 179,
+            height: 124,
+            weight: 19,
+            src: "mens_set/wallet-179x124-19g.png"
+        }
+    }
+}
