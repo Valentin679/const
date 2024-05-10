@@ -33,7 +33,7 @@
     <div id="dropBox">
     </div>
     <div id="itemBox">
-        <ul>
+        <ul class="itemBoxUl">
             <li><img width="150px" src="img/otvertka.png"></li>
             <li><img width="150px" src="img/pila.png"></li>
             <li><img width="150px" src="img/pasatiji.png"></li>
@@ -46,9 +46,22 @@
     const workPlace = document.querySelector('.workPlace');
     const dropBox = document.querySelector('#dropBox');
     const itemBox = document.querySelector('#itemBox');
+    const itemBoxUl = document.querySelector('.itemBoxUl');
     let addBtn = document.querySelector('.addBtn');
     const choiceBoxSize = document.querySelector('.choiceBoxSize');
     const boxSize = document.querySelector('.boxSize');
+
+    const getItems = () => {
+        const items = forms.mens_set
+        const arr = Object.entries(items);
+        // console.log(arr)
+        let item = '';
+        arr.map((form) => {
+            item = item + '<li><img src="img/forms/'+ form[1].src +'"/></li>';
+        });
+        console.log(item)
+        itemBoxUl.innerHTML = item;
+    }
 
     const changeBoxSize = () => {
         choiceBoxSize.style.display = 'block';
@@ -94,6 +107,7 @@
         choiceBoxSize.style.display = 'none';
         document.querySelector('.changeBoxSizeBtn').style.display = 'block';
         workPlace.style.display = 'flex';
+        getItems();
     });
 
     // boxInner.addEventListener('click', (event) => {
