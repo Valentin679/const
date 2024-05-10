@@ -57,6 +57,7 @@
 </div>
 </body>
 <script type="application/javascript">
+    const workPlace = document.querySelector('.workPlace');
     const dropBox = document.querySelector('#dropBox');
     const itemBox = document.querySelector('#itemBox');
     let addBtn = document.querySelector('.addBtn');
@@ -127,6 +128,7 @@
         dropBox.style.height = (height * 3.65) + 'px';
         choiceBoxSize.style.display = 'none';
         document.querySelector('.changeBoxSizeBtn').style.display = 'block';
+        workPlace.style.display = 'flex';
     });
 
     boxInner.addEventListener('click', (event) => {
