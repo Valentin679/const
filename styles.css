@@ -15,8 +15,32 @@ ul {
 li {
     list-style: none;
 }
-
-.top {
+button{
+    padding: 10px 25px;
+    border-radius: 5px;
+    border-color: aquamarine;
+    background-color: honeydew;
+    cursor: pointer;
+}
+.choice{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+}
+.choice div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+}
+.choiceBoxSize{
+    display: none;
+    margin: 0 auto;
+    text-align: center;
+}
+.workPlace {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -25,7 +49,7 @@ li {
     gap: 30px;
 }
 
-.top > div {
+.workPlace > div {
     border: 1px solid #000;
 }
 
@@ -53,26 +77,12 @@ li {
     align-items: center;
 }
 
-/*.frozen {*/
-/*  border: 2px solid red;*/
-/*  pointer-events: none !important;*/
-/*}*/
 .addBtn {
     display: none;
 }
 
-#popup {
-    position: absolute;
-    border-radius: 10px;
-    background: #222222;
-    opacity: 85%;
-    width: 200px;
-    height: 200px;
-    padding: 10px;
-    color: #FFF;
-}
-
 .bot {
+    display: none;
     margin: 0 auto;
     max-width: 90%;
 }
@@ -87,6 +97,7 @@ li {
     padding: 20px 10px;
     background: #555555;
     color: #FFFFFF;
+    border-radius: 4px;
 }
 
 .boxInner {
@@ -101,12 +112,16 @@ li {
 }
 
 @media screen and (max-width: 1024px) {
-    .top {
+    .workPlace {
         flex-direction: column;
         justify-content: flex-start;
     }
     #itemBox ul {
         flex-direction: row;
         padding: 5px 0;
+    }
+    .choice div{
+        display: flex;
+        flex-direction: column;
     }
 }
