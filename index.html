@@ -7,9 +7,28 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="js/mobile-touch.js"></script>
+    <script src="js/data.js"></script>
 </head>
 <body>
-<div class="top">
+<div class="choice">
+    <h3>Вы хотите собрать конфеты или шоколадный набор?</h3>
+    <div>
+        <button class="candiesBtn" onclick="choiceCandies()">Набор конфет</button>
+        <button class="chocoBtn" onclick="choiceChoc()">Шоколадный набор</button>
+    </div>
+</div>
+<div class="choiceBoxSize">
+    <h3>Выбор коробки</h3>
+    <ul class="boxSize">
+        <!--            <li data-width="210" data-height="110">210x110</li>-->
+        <!--            <li data-width="120" data-height="120">120x120</li>-->
+        <!--            <li data-width="200" data-height="200">200x200</li>-->
+    </ul>
+</div>
+<div class="workPlace">
+    <!--    <p>сделать выбор: я хочу коробку с шоколадными формами или набор конфет -> выбор коробки (размеры/количетсво конфет)->выдать выбор-->
+    <!--        ассортимента относительно коробки(в конфетах наполнителя не будет)</p>-->
+    <!--    <p>рассчет стоимости из объекта цен за сырье и темперирование</p>-->
     <div id="dropBox">
     </div>
     <div id="itemBox">
@@ -20,20 +39,13 @@
         </ul>
     </div>
     <button class="addBtn">Check</button>
-    <div id="popup" style="display:none">
-        дивчик
-    </div>
+    <!--    <div id="popup" style="display:none">-->
+    <!--        дивчик-->
+    <!--    </div>-->
 </div>
 <div class="bot">
 
-    <div>
-        Выбор коробки
-        <ul class="boxSize">
-            <li data-width="210" data-height="110">210x110</li>
-            <li data-width="120" data-height="120">120x120</li>
-            <li data-width="200" data-height="200">200x200</li>
-        </ul>
-    </div>
+
     <div>
         Выбор наполнителя
         <ul class="boxInner">
@@ -44,17 +56,35 @@
 </div>
 </body>
 <script type="application/javascript">
+    const dropBox = document.querySelector('#dropBox');
+    const itemBox = document.querySelector('#itemBox');
+    let addBtn = document.querySelector('.addBtn');
+    const choiceBoxSize = document.querySelector('.choiceBoxSize');
+    const boxSize = document.querySelector('.boxSize');
+    const boxInner = document.querySelector('.boxInner');
+    const choiceCandies = () => {
+        document.querySelector('.bot').style.display = 'block';
+        // document.querySelector('.choice').style.display = 'none';
+    }
+    const choiceChoc = () => {
+        document.querySelector('.bot').style.display = 'block';
+        const boxChoc = packing.chocolate;
+        const arr = Object.entries(boxChoc);
+        let item = '';
+        arr.map((box) => {
+            item = item + '<li data-width="' + box[1].size.width +'" data-height="' + box[1].size.height +'">' + box[1].size.width + 'x' + box[1].size.height + '<br>' + box[1].color +'</li>';
+        });
+        boxSize.innerHTML = item;
+        document.querySelector('.choice').style.display = 'none';
+        document.querySelector('.choiceBoxSize').style.display = 'block';
+    }
+
     $(function () {
         $('.addBtn').click(function () {
             $(".draggable").draggable({containment: "#dropBox", scroll: false});
         });
     });
-    const dropBox = document.querySelector('#dropBox');
-    const itemBox = document.querySelector('#itemBox');
-    const popup = document.getElementById('popup');
-    let addBtn = document.querySelector('.addBtn');
-    const boxSize = document.querySelector('.boxSize');
-    const boxInner = document.querySelector('.boxInner');
+
 
 
     itemBox.addEventListener('click', (event) => {
@@ -65,22 +95,23 @@
         dropBox.append(clone)
         addBtn.click();
     });
+    // console.log(packing)
 
-    dropBox.addEventListener('contextmenu', (event) => {
-        event.preventDefault();
-        let e = event.target;
-        if (e != dropBox) {
-
-            const btnDelete = '<button onClick="e.remove()">Удалить изображение</button>';
-            // e.remove();
-            popup.style.display = 'block';
-            popup.style.left = event.pageX - popup.offsetWidth + 'px';
-            popup.style.top = event.pageY + 'px';
-            popup.insertAdjacentHTML('beforeEnd', btnDelete);
-            //зачищать html
-            //закрывать модалку на клике вне его
-        }
-    });
+    // dropBox.addEventListener('contextmenu', (event) => {
+    //     event.preventDefault();
+    //     let e = event.target;
+    //     if (e != dropBox) {
+    //
+    //         const btnDelete = '<button onClick="e.remove()">Удалить изображение</button>';
+    //         // e.remove();
+    //         popup.style.display = 'block';
+    //         popup.style.left = event.pageX - popup.offsetWidth + 'px';
+    //         popup.style.top = event.pageY + 'px';
+    //         popup.insertAdjacentHTML('beforeEnd', btnDelete);
+    //         //зачищать html
+    //         //закрывать модалку на клике вне его
+    //     }
+    // });
     boxSize.addEventListener('click', (event) => {
         let li = event.target;
         let width = li.dataset.width;
