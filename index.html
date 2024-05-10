@@ -25,6 +25,7 @@
         <!--            <li data-width="200" data-height="200">200x200</li>-->
     </ul>
 </div>
+<button class="changeBoxSizeBtn" onclick="changeBoxSize()">Изаменить размер коробки</button>
 <div class="workPlace">
     <!--    <p>сделать выбор: я хочу коробку с шоколадными формами или набор конфет -> выбор коробки (размеры/количетсво конфет)->выдать выбор-->
     <!--        ассортимента относительно коробки(в конфетах наполнителя не будет)</p>-->
@@ -60,8 +61,14 @@
     const itemBox = document.querySelector('#itemBox');
     let addBtn = document.querySelector('.addBtn');
     const choiceBoxSize = document.querySelector('.choiceBoxSize');
+    const changeBoxSizeBtn = document.querySelector('.changeBoxSizeBtn');
     const boxSize = document.querySelector('.boxSize');
     const boxInner = document.querySelector('.boxInner');
+
+    const changeBoxSize = () => {
+        choiceBoxSize.style.display = 'block';
+        document.querySelector('.changeBoxSizeBtn').style.display = 'none';
+    }
     const choiceCandies = () => {
         document.querySelector('.bot').style.display = 'block';
         // document.querySelector('.choice').style.display = 'none';
@@ -118,6 +125,8 @@
         let height = li.dataset.height;
         dropBox.style.width = (width * 3.65) + 'px';
         dropBox.style.height = (height * 3.65) + 'px';
+        choiceBoxSize.style.display = 'none';
+        document.querySelector('.changeBoxSizeBtn').style.display = 'block';
     });
 
     boxInner.addEventListener('click', (event) => {
