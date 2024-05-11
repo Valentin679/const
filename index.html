@@ -52,11 +52,13 @@
     const boxSize = document.querySelector('.boxSize');
 
     const getItems = () => {
-        const items = forms.mens_set
+        const items = candies
+        // const items = forms.mens_set
         const arr = Object.entries(items);
+        console.log(arr)
         let item = '';
         arr.map((form) => {
-            item = item + '<li><img src="img/forms/' + form[1].src + '"/></li>';
+            item = item + '<li><img src="img/candies/' + form[1].src + '"/></li>';
         });
         console.log(item)
         itemBoxUl.innerHTML = item;
@@ -105,7 +107,7 @@
 
     $(function () {
         $('.btnAddCandies').click(function () {
-            $(".draggableGrid").draggable({containment: "#dropBox", grid: [110, 110], scroll: false, distance: 10});
+            $(".draggableGrid").draggable({containment: "#dropBox", grid: [110, 110], scroll: false});
         });
     });
     const addChocolatesDropBox = () => {
