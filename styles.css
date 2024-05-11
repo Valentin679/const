@@ -60,8 +60,7 @@ button{
 #dropBox {
     width: 700px;
     height: 500px;
-    background: url("img/kraft-bej.jpg");
-
+    background-image: url("/img/kraft-bej.jpg");
 }
 
 #itemBox {
@@ -86,7 +85,9 @@ button{
 .addBtn {
     display: none;
 }
-
+.btnAddCandies{
+    display: none;
+}
 .bot {
     display: none;
     margin: 0 auto;
