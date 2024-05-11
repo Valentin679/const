@@ -34,12 +34,12 @@
     </div>
     <div id="itemBox">
         <ul class="itemBoxUl">
-<!--             <li><img width="150px" src="img/otvertka.png"></li>
-            <li><img width="150px" src="img/pila.png"></li>
-            <li><img width="150px" src="img/pasatiji.png"></li> -->
+            <!--            <li><img width="150px" src="img/otvertka.png"></li>-->
+            <!--            <li><img width="150px" src="img/pila.png"></li>-->
+            <!--            <li><img width="150px" src="img/pasatiji.png"></li>-->
         </ul>
     </div>
-    <button class="addBtn">Check</button>
+    <button class="addBtn btnAddCandies">Check</button>
 </div>
 </body>
 <script type="application/javascript">
@@ -54,10 +54,9 @@
     const getItems = () => {
         const items = forms.mens_set
         const arr = Object.entries(items);
-        // console.log(arr)
         let item = '';
         arr.map((form) => {
-            item = item + '<li><img src="img/forms/'+ form[1].src +'"/></li>';
+            item = item + '<li><img src="img/forms/' + form[1].src + '"/></li>';
         });
         console.log(item)
         itemBoxUl.innerHTML = item;
@@ -68,19 +67,34 @@
         document.querySelector('.changeBoxSizeBtn').style.display = 'none';
     }
     const choiceCandies = () => {
+        addBtn.classList.remove("addBtn");
+        choiceBoxSize.style.display = 'block';
+        const boxChoc = packing.candies;
+        dropBox.style.backgroundImage = 'none';//'url("' + img.src + '")';
+        const arr = Object.entries(boxChoc);
+        let item = '';
+        arr.map((box) => {
+            item = item + '<li data-width="' + box[1].size.width + '" data-height="' + box[1].size.height + '" data-bg="' + box[1].src + '">' + box[1].size.width + 'x' + box[1].size.height + '<br>' + box[1].color + '</li>';
+        });
+        boxSize.innerHTML = item;
+        document.querySelector('.choice').style.display = 'none';
+        document.querySelector('.choiceBoxSize').style.display = 'block';
+        addCandiesDropBox();
         // document.querySelector('.bot').style.display = 'block';
     }
     const choiceChoc = () => {
+        addBtn.classList.remove("btnAddCandies");
         choiceBoxSize.style.display = 'block';
         const boxChoc = packing.chocolate;
         const arr = Object.entries(boxChoc);
         let item = '';
         arr.map((box) => {
-            item = item + '<li data-width="' + box[1].size.width +'" data-height="' + box[1].size.height +'">' + box[1].size.width + 'x' + box[1].size.height + '<br>' + box[1].color +'</li>';
+            item = item + '<li data-width="' + box[1].size.width + '" data-height="' + box[1].size.height + '">' + box[1].size.width + 'x' + box[1].size.height + '<br>' + box[1].color + '</li>';
         });
         boxSize.innerHTML = item;
         document.querySelector('.choice').style.display = 'none';
         document.querySelector('.choiceBoxSize').style.display = 'block';
+        addChocolatesDropBox();
     }
 
     $(function () {
@@ -89,24 +103,45 @@
         });
     });
 
-    itemBox.addEventListener('click', (event) => {
-        let parent = event.target.parentNode;
-        let img = parent.querySelector('img');
-        let clone = img.cloneNode(true);
-        clone.classList.add('draggable');
-        dropBox.append(clone)
-        addBtn.click();
+    $(function () {
+        $('.btnAddCandies').click(function () {
+            $(".draggableGrid").draggable({containment: "#dropBox", grid: [110, 110], scroll: false, distance: 10});
+        });
     });
+    const addChocolatesDropBox = () => {
+        itemBox.addEventListener('click', (event) => {
+            let parent = event.target.parentNode;
+            let img = parent.querySelector('img');
+            let clone = img.cloneNode(true);
+            clone.classList.add('draggable');
+            dropBox.append(clone)
+            let addBtn = document.querySelector('.addBtn');
+            addBtn.click();
+        });
+    }
+    const addCandiesDropBox = () => {
+        itemBox.addEventListener('click', (event) => {
+            let parent = event.target.parentNode;
+            let img = parent.querySelector('img');
+            let clone = img.cloneNode(true);
+            clone.classList.add('draggableGrid');
+            dropBox.append(clone)
+            let addBtn = document.querySelector('.btnAddCandies');
+            addBtn.click();
+        });
+    }
 
     boxSize.addEventListener('click', (event) => {
         let li = event.target;
         let width = li.dataset.width;
         let height = li.dataset.height;
+        let bgSrc = li.dataset.src;
         dropBox.style.width = (width * 3.65) + 'px';
         dropBox.style.height = (height * 3.65) + 'px';
         choiceBoxSize.style.display = 'none';
         document.querySelector('.changeBoxSizeBtn').style.display = 'block';
         workPlace.style.display = 'flex';
+        dropBox.style.backgroundImage = 'url("' + bgSrc + '")';
         getItems();
     });
 
