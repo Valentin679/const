@@ -54,13 +54,25 @@ button{
 }
 
 .workPlace > div {
-    border: 1px solid #000;
+    /*border: 1px solid #000;*/
 }
 
 #dropBox {
     width: 700px;
     height: 500px;
     background-image: url("/img/kraft-bej.jpg");
+    box-sizing: border-box;
+    box-shadow: 0px 1px 10px 5px rgba(0, 0, 0, 0.3);
+}
+
+/*#dropBox>img {*/
+/*    padding: 20px;*/
+/*    margin: 20px;*/
+/*    border: 1px solid #555555;*/
+/*}*/
+
+.draggableGrid{
+    /*padding: 50px;*/
 }
 
 #itemBox {
