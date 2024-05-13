@@ -20,9 +20,6 @@
 <div class="choiceBoxSize">
     <h3>Выбор коробки</h3>
     <ul class="boxSize">
-        <!--            <li data-width="210" data-height="110">210x110</li>-->
-        <!--            <li data-width="120" data-height="120">120x120</li>-->
-        <!--            <li data-width="200" data-height="200">200x200</li>-->
     </ul>
 </div>
 <button class="changeBoxSizeBtn" onclick="changeBoxSize()">Изаменить размер коробки</button>
@@ -34,13 +31,11 @@
     </div>
     <div id="itemBox">
         <ul class="itemBoxUl">
-            <!--            <li><img width="150px" src="img/otvertka.png"></li>-->
-            <!--            <li><img width="150px" src="img/pila.png"></li>-->
-            <!--            <li><img width="150px" src="img/pasatiji.png"></li>-->
         </ul>
     </div>
     <button class="addBtn btnAddCandies">Check</button>
 </div>
+<div class="priceRow">Стоимость набора: <b class="price"></b></div>
 </body>
 <script type="application/javascript">
     //Все селекторы
@@ -51,19 +46,16 @@
     let addBtn = document.querySelector('.addBtn');
     const choiceBoxSize = document.querySelector('.choiceBoxSize');
     const boxSize = document.querySelector('.boxSize');
+    const priceRow = document.querySelector('.priceRow');
+    let boxPrice = '';
 
     //Получение товаров
     const getItems = (type, folder, places) => {
-
-        // const items = candies
-        // const items = forms.mens_set
-        // folder = folder.substring(0, folder.indexOf('.'));
         const items = type;
         const arr = Object.entries(items);
-        console.log(arr)
         let item = '';
         arr.map((form) => {
-            item = item + '<li><img src="img/' + folder + form[1].src + '"/></li>';
+            item = item + '<li><img data-weight="' + form[1].weight + '" src="img/' + folder + form[1].src + '"/></li>';
         });
         itemBoxUl.innerHTML = item;
     }
@@ -88,7 +80,6 @@
         document.querySelector('.choice').style.display = 'none';
         document.querySelector('.choiceBoxSize').style.display = 'block';
         addCandiesDropBox();
-        // document.querySelector('.bot').style.display = 'block';
     }
     //При нажатии на кнопку выбора конфет
     const choiceChoc = () => {
@@ -98,7 +89,7 @@
         const arr = Object.entries(boxChoc);
         let item = '';
         arr.map((box) => {
-            item = item + '<li data-type="forms" data-width="' + box[1].size.width + '" data-height="' + box[1].size.height + '">' + box[1].size.width + 'x' + box[1].size.height + '<br>' + box[1].color + '</li>';
+            item = item + '<li data-type="forms" data-price="' + box[1].price + '" data-width="' + box[1].size.width + '" data-height="' + box[1].size.height + '">' + box[1].size.width + 'x' + box[1].size.height + '<br>' + box[1].color + '</li>';
         });
         boxSize.innerHTML = item;
         document.querySelector('.choice').style.display = 'none';
@@ -114,7 +105,7 @@
         let type = li.dataset.type;
         let bgSrc = li.dataset.src;
         let places = li.dataset.places;
-        console.log(places)
+        boxPrice = li.dataset.price;
         dropBox.style.width = (width * 3.65) + 'px';
         dropBox.style.height = (height * 3.65) + 'px';
         dropBox.dataset.places = places;
@@ -150,9 +141,23 @@
             let img = parent.querySelector('img');
             let clone = img.cloneNode(true);
             clone.classList.add('draggable');
+            let weight = clone.dataset.weight;
             dropBox.append(clone)
             let addBtn = document.querySelector('.addBtn');
             addBtn.click();
+            priceRow.style.display = "block";
+            let formPrice = constants.CHOCOLATE_PRICE * 0.001 * weight;
+            let price = '';
+            let priceBox = document.querySelector('.price');
+            let nowPrice = priceBox.innerHTML;
+            if (nowPrice === ''){
+                price = Number(constants.TEMPER_PRICE) + Number(boxPrice) + Number(nowPrice) + (Number(formPrice)*2);
+                priceBox.innerHTML = price;
+            }
+            else {
+                price = Number(nowPrice) + (Number(formPrice)*2);
+                priceBox.innerHTML = price;
+            }
         });
     }
 
