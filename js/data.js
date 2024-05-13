@@ -1,3 +1,11 @@
+const constants = {
+    WORK_PRICE_MINUTE: 3,
+    TEMPER_TIME: 7,
+    TEMPER_PRICE: 21,
+    WORK_ONE_FORM_PRICE: 4,
+    CHOCOLATE_PRICE: 1500,
+}
+
 const packing = {
     candies: {
         big_box: {
@@ -48,6 +56,7 @@ const packing = {
                 depth: 40,
                 places: 0
             },
+            price: 50,
             filler: true,
             color: 'white',
             src: '150x150x40-white.jpg'
@@ -60,6 +69,7 @@ const packing = {
                 depth: 35,
                 places: 0
             },
+            price: 30,
             filler: true,
             color: 'white',
             src: '200x200x35-white.jpg'
@@ -72,6 +82,7 @@ const packing = {
                 depth: 40,
                 places: 0
             },
+            price: 40,
             filler: true,
             color: 'white',
             src: '250x210x40-white.jpg'
