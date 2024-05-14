@@ -4,6 +4,7 @@ body {
     gap: 50px;
     justify-content: center;
     width: 100%;
+    overflow: hidden;
 }
 
 ul {
