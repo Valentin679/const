@@ -122,6 +122,17 @@ button{
     text-align: center;
 }
 
+.weightRow {
+    display: none;
+    font-size: 20px;
+    text-align: center;
+}
+.temperRow {
+    display: none;
+    font-size: 20px;
+    text-align: center;
+}
+
 @media screen and (max-width: 1024px) {
     .workPlace {
         flex-direction: column-reverse;
