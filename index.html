@@ -36,6 +36,8 @@
     <button class="addBtn btnAddCandies">Check</button>
 </div>
 <div class="priceRow">Стоимость набора: <b class="price"></b></div>
+<div class="weightRow">Масса набора: <b class="weight"></b> г.</div>
+<div class="temperRow"><b class="weightTemp1"></b> г. -> 43`C -> <b class="weightTemp2"></b></div>
 </body>
 <script type="application/javascript">
     //Все селекторы
@@ -47,7 +49,21 @@
     const choiceBoxSize = document.querySelector('.choiceBoxSize');
     const boxSize = document.querySelector('.boxSize');
     const priceRow = document.querySelector('.priceRow');
+    const weightRow = document.querySelector('.weightRow');
+    const temperRow = document.querySelector('.temperRow');
     let boxPrice = '';
+
+    //Пересчет темпереирования
+    const temper = () => {
+        temperRow.style.display = 'block';
+        let allWeight = Number(document.querySelector('.weight').innerHTML);
+        let weightTemp2 = Math.round(allWeight * 0.3);
+        let weightTemp1 = allWeight - weightTemp2;
+        const weightTemp1Box = document.querySelector('.weightTemp1');
+        const weightTemp2Box = document.querySelector('.weightTemp2');
+        weightTemp1Box.innerHTML = weightTemp1;
+        weightTemp2Box.innerHTML = weightTemp2;
+    }
 
     //Получение товаров
     const getItems = (type, folder, places) => {
@@ -146,18 +162,25 @@
             let addBtn = document.querySelector('.addBtn');
             addBtn.click();
             priceRow.style.display = "block";
+            weightRow.style.display = "block";
             let formPrice = constants.CHOCOLATE_PRICE * 0.001 * weight;
             let price = '';
             let priceBox = document.querySelector('.price');
+            let weightBox = document.querySelector('.weight');
             let nowPrice = priceBox.innerHTML;
+            let nowWeight = weightBox.innerHTML;
             if (nowPrice === ''){
                 price = Number(constants.TEMPER_PRICE) + Number(boxPrice) + Number(nowPrice) + (Number(formPrice)*2);
                 priceBox.innerHTML = price;
+                weightBox.innerHTML = weight;
             }
             else {
                 price = Number(nowPrice) + (Number(formPrice)*2);
+                weight = Number(nowWeight) + Number(weight);
                 priceBox.innerHTML = price;
+                weightBox.innerHTML = weight;
             }
+            temper();
         });
     }
 
